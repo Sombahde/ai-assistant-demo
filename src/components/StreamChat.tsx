@@ -37,10 +37,12 @@ export default function StreamChat() {
       while (true) {
         const { value, done } = await reader.read();
         if (done) break;
-        setReply((prev) => prev + decoder.decode(value, { stream: true }));
+        setReply(prev => prev + decoder.decode(value, { stream: true }));
       }
-    } catch (err: any) {
-      setReply((prev) => prev + `\n\n[client-error]: ${err?.message || String(err)}`);
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : typeof err === "string" ? err : "Unknown error";
+      setReply(prev => `${prev}\n\n[client-error]: ${message}`);
     } finally {
       setLoading(false);
     }
