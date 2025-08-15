@@ -1,3 +1,4 @@
+import StreamChat from "@/components/StreamChat";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
@@ -25,6 +26,9 @@ export default function Home() {
             </ul>
           </div>
         </div>
+         <div className="mt-6">
+             <StreamChat />
+         </div>
 
         <Button className="mt-4">It Lives 🎉</Button>
       </div>
